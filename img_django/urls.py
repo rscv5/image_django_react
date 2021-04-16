@@ -15,9 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from imgdjango import views
 
 
 urlpatterns = [
-    path('', include('imgmagnifydjango.urls')),
+    path('', include('imgdjango.urls')),
+    # path('uploadsuccess/', views.upload_success,name='uploadsuccess'),
+    # path('uploadimg/',views.test,name='test'),
     path('admin/', admin.site.urls),
 ]

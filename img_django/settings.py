@@ -39,13 +39,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'imgmagnifydjango',
     'corsheaders',
-    'imgfrontend',
+    # 'imgfrontend',
+    # 'imgdjango',
+    'imgdjango.apps.ImgmagnifydjangoConfig',
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
+    'corsheaders.middleware.CorsMiddleware', # make sure above all others
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -53,11 +54,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
+    ]
 
-CORS_ORIGIN_WHITELIST=[
-    'http://localhost:3000',
-]
+
 
 ROOT_URLCONF = 'img_django.urls'
 
@@ -135,6 +134,12 @@ STATICFILES_DIRS=(
 
 CORS_ORIGIN_ALLOW_ALL = True
 ALLOWED_HOSTS = ['*']
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:3000',
+]
 
+#"http://127.0.0.1:8000/media/photos/sample-image.jpg'
+
+# MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR)
 

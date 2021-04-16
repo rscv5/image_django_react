@@ -1,7 +1,9 @@
 import React from 'react';
-import {Layout,Button} from "antd";
-import Cookies from 'js-cookie';
-const csrftoken = Cookies.get('CSRF-TOKEN');
+import {Card,Button} from "antd";
+// import Cookies from 'js-cookie';
+import UploadImg from "./uploadimg";
+import "antd/dist/antd.css";
+// const csrftoken = Cookies.get('CSRF-TOKEN');
 class ImgDemo extends React.Component{
     constructor(props) {
         super(props);
@@ -21,16 +23,36 @@ class ImgDemo extends React.Component{
         })
     }
     _getimage=()=>{
-
+        this._getimgPath();
+        this.setState({
+            showimageFlag:true,
+        },function () {
+            console.log('showimage',this.state.showimageFlag);
+        })
     }
 
-    render() {
-        return(
 
-            <Button onClick={this._getimgPath}/>
+
+    render(){
+        return(
+            <Card key={'imagemagtest'}
+                  title={'IMAGE MAGNIFY'}
+                  hoverable
+                  extra={
+                    [
+                        <UploadImg key={'uploadimg'}/>,
+                        <Button onClick={this._getimage}
+                                style={{marginLeft:'20px'}}>
+                            SHOW IMAGES
+                        </Button>,
+                    ]
+                  }
+                  style={{height:'100%'}}
+                  >
+                THis is test
+            </Card>
         )
     }
-
 
 }
 
