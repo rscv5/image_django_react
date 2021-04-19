@@ -1,9 +1,8 @@
 import React from 'react';
 import {Upload,Button,message} from 'antd';
 import {UploadOutlined} from '@ant-design/icons';
-// import emitter from '../util/events';
 import Cookies from 'js-cookie';
-//
+
 const csrftoken = Cookies.get('CSRF-TOKEN');
 
 class UploadImg extends React.Component{
@@ -15,7 +14,7 @@ class UploadImg extends React.Component{
             image:null,
         }
     }
-    // uploadApi=()=>{}
+
     //验证上传文件的格式
     handleAttachValidate=(file)=>{
         let fileName = file.name;
@@ -48,7 +47,7 @@ class UploadImg extends React.Component{
 
                 .then(res=>res.json())
                 .then(data=>{
-                    console.log('>>>>>>>>filelog',data); //获取的是后端发回来的信息
+                    // console.log('>>>>>>>>filelog',data); //获取的是后端发回来的信息
            //
            //          message.success('成功上传文件：'+fileName);
            //          emitter.emit('filesuccess',true);
@@ -60,34 +59,7 @@ class UploadImg extends React.Component{
             message.error('文件上传失败,请联系服务端！')
         }
     }
-    handleImageChange = (e) => {
-    this.setState({
-      image: e.target.files[0]
-    })
-  };
 
-    handleSubmit = (e) => {
-    e.preventDefault();
-    // console.log(this.state.image);
-    let form_data = new FormData()
-    form_data.append('imgfiles',this.state.image);
-    let url = 'http://localhost:8000/uploadimg/';
-    fetch(url,{
-                method:'POST',
-                headers:{
-                    // "Accept":'application/json',
-                    // "Content-type":'multipart/form-data',
-                    "X-CSRFToken":csrftoken,
-                },
-                body:form_data,
-            })
-
-                .then(res=>res.json())
-                .catch(err=>console.log(err))
-                .then(data=>{
-                    console.log('>>>>>>>>filelog',data); //获取的是后端发回来的信息
-                })
-        };
 
     render() {
         return(
@@ -97,8 +69,6 @@ class UploadImg extends React.Component{
                 // name 是发送到后台的文件参数！！！！！血泪教训！！！！！
                 name={'file'}  //注意了！！！！这个要与后端的model字段一一对应！！！！！！！！啊啊啊啊啊啊啊啊啊啊！！！！！
                 acctpt={'image/*'}
-                // headers
-                // data={}
                 showUploadList={false}
                 method={"post"}
                 action={"http://localhost:8000/uploadimg/"}//上传的地址 待定
@@ -107,14 +77,6 @@ class UploadImg extends React.Component{
             >
                 <Button icon={<UploadOutlined/>}>Upload Files</Button>
             </Upload>
-            // <form onSubmit={this.handleSubmit}>
-            //     <p>
-            //         <input type={'file'} id={'image'}
-            //                 accept="image/png, image/jpeg"  onChange={this.handleImageChange} required
-            //         />
-            //         <input type={'submit'}/>
-            //     </p>
-            // </form>
         )
     }
 }
