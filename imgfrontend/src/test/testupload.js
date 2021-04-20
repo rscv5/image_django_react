@@ -47,9 +47,6 @@ class UploadImg extends React.Component{
                 .then(res=>res.json())
                 .then(data=>{
                     console.log('>>>>>>>>filelog',data); //获取的是后端发回来的信息
-           //
-           //          message.success('成功上传文件：'+fileName);
-           //          emitter.emit('filesuccess',true);
                 })
             message.success('成功上传文件：'+fileName);
 
